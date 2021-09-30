@@ -34,14 +34,15 @@ popCount c (x:xs)
          insertNoDup 2 [1,2,3,4] == [1,2,3,4]
 -}
 
-insertNoDup :: Ord a => a -> [a] -> [a]
-insertNoDup x [] = [] : x
-insertNoDup x (y:ys)
-      | x != y && ord y > ord x = (x:y:ys)
-      | x !=y && ord y < ord x = insertNoDup x (ys)
-      | x == y = (y:ys)
+-- insertNoDup :: Ord a => a -> [a] -> [a]
+-- insertNoDup x [] = x : []
+-- insertNoDup x (y:ys)
+--       | x /= y && y < x = (x:y:ys)
+--       | x /=y && y > x = insertNoDup x (ys)
+--       | x == y = (y:ys)
 
-
+  git config --global user.email "lewisdanby@ymail.com"
+  git config --global user.name "Danby3000"
 
 {- 3. Write a version of 'remove' that removes all copies of an element
       from a sorted list, not just the first one. Examples:
@@ -51,17 +52,30 @@ insertNoDup x (y:ys)
 -}
 
 removeAll :: Ord a => a -> [a] -> [a]
-removeAll = undefined
+removeAll x [] = []
+removeAll x (y:ys)
+      | x == y = removeAll x ys
+      | otherwise = y : removeAll x ys
 
 
 {- 4. Rewrite 'treeFind' and 'treeInsert' to use 'compare' and 'case'
       expressions. -}
 
 treeFind2 :: Ord k => k -> KV k v -> Maybe v
-treeFind2 = undefined
+treeFind2 k Leaf = Nothing
+treeFind2 k (Node l (k',v') r) =
+  case compare k k' of 
+        EQ -> Just v'
+        LT -> treeFind k l
+        GT -> treeFind k r
 
 treeInsert2 :: Ord k => k -> v -> KV k v -> KV k v
-treeInsert2 = undefined
+treeInsert2 k v Leaf = Node Leaf (k,v) Leaf
+treeInsert2 k v (Node l (k',v') r) =
+      case compare k k' of
+            EQ -> Node l (k,v) r
+            LT -> Node (treeInsert k v l) (k',v') r
+            GT -> Node l (k',v') (treeInsert k v r)
 
 
 {- 5. MergeSort is another sorting algorithm that works in the following
