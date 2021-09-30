@@ -35,7 +35,12 @@ popCount c (x:xs)
 -}
 
 insertNoDup :: Ord a => a -> [a] -> [a]
-insertNoDup = undefined
+insertNoDup x [] = [] : x
+insertNoDup x (y:ys)
+      | x != y && ord y > ord x = (x:y:ys)
+      | x !=y && ord y < ord x = insertNoDup x (ys)
+      | x == y = (y:ys)
+
 
 
 {- 3. Write a version of 'remove' that removes all copies of an element
