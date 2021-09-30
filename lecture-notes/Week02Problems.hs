@@ -101,7 +101,7 @@ treeInsert2 k v (Node l (k',v') r) =
       'where' clause. -}
 
 split :: [a] -> ([a], [a])
-split = undefined
+split (x1:x2:xs) = ([x1], [x2]) split xs
 
 {-    'merge' merges two sorted lists into one sorted list. Examples:
 
