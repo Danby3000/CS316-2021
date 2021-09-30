@@ -14,7 +14,10 @@ import Week02
       element in list: -}
 
 popCount :: Eq a => a -> [a] -> Int
-popCount = undefined
+popCount c [] = 0
+popCount c (x:xs)
+    | c == x = 1 + popCount c xs
+    | otherwise = popCount c xs
 
 {-    (popCount is short for "population count"). Examples:
 
