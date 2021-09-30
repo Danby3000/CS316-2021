@@ -41,8 +41,8 @@ popCount c (x:xs)
 --       | x /=y && y > x = insertNoDup x (ys)
 --       | x == y = (y:ys)
 
-  git config --global user.email "lewisdanby@ymail.com"
-  git config --global user.name "Danby3000"
+  --git config --global user.email "lewisdanby@ymail.com"
+  --git config --global user.name "Danby3000"
 
 {- 3. Write a version of 'remove' that removes all copies of an element
       from a sorted list, not just the first one. Examples:
