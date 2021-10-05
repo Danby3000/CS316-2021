@@ -23,6 +23,14 @@ invert True  = False
 invert False = True
   {- HINT: use a 'case', or an 'if'. -}
 
+mulBy2' :: Integer -> Integer
+mulBy2' = \x -> (*) x 2
+
+mul' :: Integer -> Integer -> Integer
+mul' = \x y -> (x*y)
+
+-- invert' :: Bool -> Bool
+-- invert' = \True -> (if True then False otherwise True)
 
 {- 2. Partial Application
 
@@ -31,7 +39,12 @@ invert False = True
 
        mul 10
 
-   (b) what is 'mul 10'? How can you use it to multiply a number? -}
+       Int -> Int
+
+   (b) what is 'mul 10'? How can you use it to multiply a number? 
+   It's a partial function and can be used to multiply any int passed by 10
+   -}
+
 
 
 {- 3. Partial Application
@@ -40,7 +53,7 @@ invert False = True
    function as short as possible? -}
 
 double_v2 :: Int -> Int
-double_v2 = undefined -- fill this in
+double_v2 x = mul x 2
 
 {- 4. Using 'map'.
 
@@ -63,7 +76,7 @@ double_v2 = undefined -- fill this in
 -}
 
 shout :: String -> String    -- remember that String = [Char]
-shout = undefined
+shout = map toUpper
 
 
 {- 5. Using 'map' with another function.
@@ -101,13 +114,13 @@ dupAll = undefined
        's' and counts the number of 'c's in 's'. -}
 
 onlyEs :: String -> String
-onlyEs = undefined
+onlyEs = filter (== 'E')
 
 numberOfEs :: String -> Int
-numberOfEs = undefined
+numberOfEs str = length (onlyEs str)
 
 numberOf :: Char -> String -> Int
-numberOf = undefined
+numberOf c s = length (filter (== c) s)
 
 
 {- 7. Rewriting 'filter'
