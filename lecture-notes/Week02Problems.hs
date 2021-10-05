@@ -1,4 +1,5 @@
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 module Week02Problems where
 
 import Week02
@@ -16,7 +17,7 @@ import Week02
 popCount :: Eq a => a -> [a] -> Int
 popCount c [] = 0
 popCount c (x:xs)
-    | c == x = 1 + popCount c xs
+    | c == x    = 1 + popCount c xs
     | otherwise = popCount c xs
 
 {-    (popCount is short for "population count"). Examples:
@@ -41,6 +42,13 @@ popCount c (x:xs)
 --       | x /=y && y > x = insertNoDup x (ys)
 --       | x == y = (y:ys)
 
+insertNoDup :: Ord a => a -> [a] -> [a]
+insertNoDup x [] = [x]
+insertNoDup x (y : ys) 
+      | x < y     = x : y : ys
+      | x == y    = y : ys
+      | otherwise = y : insertNoDup x ys
+
   --git config --global user.email "lewisdanby@ymail.com"
   --git config --global user.name "Danby3000"
 
@@ -54,7 +62,8 @@ popCount c (x:xs)
 removeAll :: Ord a => a -> [a] -> [a]
 removeAll x [] = []
 removeAll x (y:ys)
-      | x == y = removeAll x ys
+      | x < y     = y : ys
+      | x == y    = removeAll x ys
       | otherwise = y : removeAll x ys
 
 
@@ -64,7 +73,7 @@ removeAll x (y:ys)
 treeFind2 :: Ord k => k -> KV k v -> Maybe v
 treeFind2 k Leaf = Nothing
 treeFind2 k (Node l (k',v') r) =
-  case compare k k' of 
+  case compare k k' of
         EQ -> Just v'
         LT -> treeFind k l
         GT -> treeFind k r
@@ -101,7 +110,12 @@ treeInsert2 k v (Node l (k',v') r) =
       'where' clause. -}
 
 split :: [a] -> ([a], [a])
-split (x1:x2:xs) = ([x1], [x2]) split xs
+split []         = ([], [])
+split [x]        = ([x], [])
+split (x1:x2:xs) = (x1:odds, x2:evens)
+      where
+            (odds, evens) = split xs
+
 
 {-    'merge' merges two sorted lists into one sorted list. Examples:
 
@@ -110,20 +124,31 @@ split (x1:x2:xs) = ([x1], [x2]) split xs
 -}
 
 merge :: Ord a => [a] -> [a] -> [a]
-merge = undefined
+merge [] ys = ys
+merge xs [] = xs
+merge (x : xs) (y : ys) 
+      | x < y     = x : merge xs (y : ys)
+      | x == y    = x : y : merge xs ys
+      | otherwise = y : merge (x : xs) ys
 
 {-    'mergeSort' uses 'split' and 'merge' to implement the merge sort
       algorithm described above. -}
 
 mergeSort :: Ord a => [a] -> [a]
-mergeSort = undefined
-
+mergeSort []  = []
+mergeSort [x] = [x]
+mergeSort xs  = merge (mergeSort odds) (mergeSort even)
+      where (odds, even) = split xs
 
 {- 6. Write another version of 'makeChange' that returns all the
       possible ways of making change as a list: -}
 
 makeChangeAll :: [Coin] -> [Coin] -> Int -> [[Coin]]
-makeChangeAll = undefined
-
+makeChangeAll coins used 0 = [used]
+makeChangeAll  []  used ammount = []
+makeChangeAll (coin : coins) used ammount
+      | coin > ammount = makeChangeAll coins used ammount
+      | otherwise      = makeChangeAll coins (coin : used) (ammount - coin) ++
+                         makeChangeAll coins used ammount
 {- HINT: you don't need a case expression, just a way of appending two
    lists of possibilities. -}
