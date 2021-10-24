@@ -75,7 +75,7 @@ data Nat
       the numbers 1 to 10: -}
 
 cubes :: [Int]
-cubes = undefined
+cubes = [x*x*x | x <- [1..10]]
 
 
 {- 6. The replicate function copies a single value a fixed number of
