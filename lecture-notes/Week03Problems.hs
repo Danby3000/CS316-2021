@@ -53,7 +53,7 @@ mul' = \x y -> (x*y)
    function as short as possible? -}
 
 double_v2 :: Int -> Int
-double_v2 x = mul x 2
+double_v2 = mul 2
 
 {- 4. Using 'map'.
 
