@@ -57,10 +57,10 @@ solutions will be released after the session.
 - [Week 3](lecture-notes/Week03.hs) : Higher Order Functions [Tutorial Problems](lecture-notes/Week03Problems.hs), [Start-the-week Notes](lecture-notes/Week03Intro.hs)
 - [Week 4](lecture-notes/Week04.hs) : Patterns of Recursion [Tutorial Problems](lecture-notes/Week04Problems.hs), [Start-the-week Notes](lecture-notes/Week04Intro.hs)
 - [Week 5](lecture-notes/Week05.hs) : Classes of Types [Tutorial Problems](lecture-notes/Week05Problems.hs), [Start-the-week Notes](lecture-notes/Week05Intro.hs)
-- [Week 6](lecture-notes/Week06.hs) : Simulating side-effects: Exceptions, State, and Printing [Tutorial Problems](lecture-notes/Week06Problems.hs)
-- Week 7 : Monads
-- Week 8 : Real I/O and Parser Combinators
-- Week 9 : Data Dependencies and Applicative Functors
-- Week 10 : Lazy Evaluation and Infinite Data
+- [Week 6](lecture-notes/Week06.hs) : Simulating side-effects: Exceptions, State, and Printing [Tutorial Problems](lecture-notes/Week06Problems.hs), [Start-the-week Notes](lecture-notes/Week06Intro.hs)
+- [Week 7](lecture-notes/Week07.hs) : Monads [Tutorial Problems](lecture-notes/Week07Problems.hs), [Start-the-week Notes](lecture-notes/Week07Intro.hs)
+- [Week 8](lecture-notes/Week08.hs) : Real I/O and Parser Combinators
+- [Week 9](lecture-notes/Week09.hs) : Data Dependencies and Applicative Functors
+- [Week 10](lecture-notes/Week10.hs) : Lazy Evaluation and Infinite Data
 
-For a preview, you can take a look at [last year's repository](https://github.com/bobatkey/CS316-2020).
+You can take a look at [last year's repository](https://github.com/bobatkey/CS316-2020) for the same notes and some different exercises.
